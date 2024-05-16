@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier téléphone</title>
+    <!-- Inclure Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<form class="container mt-5" th:action="@{/telephone/{id}(id=${telephone.id})}" th:object="${telephone}" method="post">
+    <div class="form-group">
+        <label for="nom"><i class="fas fa-heading"></i> Nom</label>
+        <input type="text" id="nom" name="nom" class="form-control" th:value="${telephone.nom}" required />
+    </div>
+
+    <div class="form-group">
+        <label for="marque"><i class="fas fa-link"></i> Marque</label>
+        <input type="text" id="marque" name="marque" class="form-control" th:value="${telephone.marque}" required />
+    </div>
+
+    <div class="form-group">
+        <label for="price"><i class="fas fa-info-circle"></i> Prix</label>
+        <input type="text" id="price" name="price" class="form-control" th:value="${telephone.price}" required />
+    </div>
+
+    <div class="form-group">
+        <label for="desc"><i class="fas fa-info-circle"></i> Description</label>
+        <input type="text" id="desc" name="desc" class="form-control" th:value="${telephone.desc}" required />
+    </div>
+
+    <div class="form-group">
+        <label for="categorie"><i class="fas fa-info-circle"></i>Catégorie</label>
+        <select id="categorie" name="categorie">
+            <option value="">Sélectionnez une catégorie</option>
+            <option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.nom}"></option>
+        </select>
+
+    </div>
+
+    <div class="form-group">
+        <label for="quantite"><i class="fas fa-info-circle"></i> Quantité</label>
+        <input type="number" id="quantite" name="quantite" class="form-control" th:value="${telephone.quantite}" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Modifier le téléphone</button>
+</form>
+</body>
+
+</html>

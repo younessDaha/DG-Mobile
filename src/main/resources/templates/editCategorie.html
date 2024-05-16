@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier utilisateur</title>
+    <!-- Inclure Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<form class="container mt-5" th:action="@{/categorie/{id}(id=${id})}" th:object="${cat}" method="post">
+    <div class="form-group">
+        <label for="nom"><i class="fas fa-heading"></i> Nom</label>
+        <input type="text" id="nom" name="nom" class="form-control" th:value="${cat.nom}" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Modifier categorie</button>
+</form>
+</body>
+
+</html>
