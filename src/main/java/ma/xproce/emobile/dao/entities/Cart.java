@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 @Entity
@@ -15,11 +16,13 @@ import java.util.Collection;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer cid;
     //ass avec user
     @OneToOne()
     private User user;
-    //ass avec cartItem
-    @OneToMany(mappedBy = "cart",fetch = FetchType.EAGER)
-    private Collection<CartItem>cartItems=new ArrayList<>();
+    //ass avec product
+    @ManyToMany(mappedBy = "carts",fetch = FetchType.EAGER)
+    private Collection<Product>products=new ArrayList<>();
+
+
 }

@@ -19,6 +19,9 @@ public class AccesoirControlleur {
     private AccesoirService accesoirService;
     @Autowired
     private CategorieService categorieService;
+
+
+
     @GetMapping("/accessoir")
     public String ListUser(Model model,
                            @RequestParam(name = "page", defaultValue = "0" ) int page,

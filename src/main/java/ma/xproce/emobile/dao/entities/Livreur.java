@@ -9,15 +9,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartItem {
+public class Livreur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private int quantite;
-    //ass avec cart
-    @ManyToOne
-    private Cart cart;
-    //ass avec prod
-    @ManyToOne
-    private Product product;
+    private  Integer id;
+    private String nom;
+    private String num;
+
+    @OneToOne
+    private Arrondissement arrondissement;
+
+    @Override
+    public String toString() {
+        return  nom
+                ;
+    }
 }

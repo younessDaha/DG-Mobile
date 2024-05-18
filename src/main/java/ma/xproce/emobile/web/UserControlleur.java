@@ -17,6 +17,8 @@ public class UserControlleur {
     @Autowired
     private UserService userService;
 
+
+
     @GetMapping("/user")
     public String ListUser(Model model,
                            @RequestParam(name = "page", defaultValue = "0" ) int page,
@@ -45,17 +47,18 @@ public class UserControlleur {
     @PostMapping("/user")
     public String saveUser(Model model,
                            @RequestParam("nom") String nom,
-                           @RequestParam("adress") String adress,
-                           @RequestParam("email") String email) {
+                           @RequestParam("adress") String adress
+//                           @RequestParam("email") String email
+    ) {
         System.out.println("Nom: " + nom);
         System.out.println("Adresse: " + adress);
-        System.out.println("Email: " + email);
+//        System.out.println("Email: " + email);
 
         // Sauvegardez votre nouvel utilisateur
         User newUser = new User();
         newUser.setNom(nom);
         newUser.setAdress(adress);
-        newUser.setEmail(email);
+//        newUser.setEmail(email);
         userService.createUser(newUser);
 
         List<User> users = userService.getAllUser2();
@@ -77,7 +80,7 @@ public class UserControlleur {
         exUser.setId(id);
         exUser.setAdress(user.getAdress());
         exUser.setNom(user.getNom());
-        exUser.setEmail(user.getEmail());
+//        exUser.setEmail(user.getEmail());
         userService.updateUser(exUser);
 
         return "redirect:/user";

@@ -26,6 +26,12 @@ public class TelephoneControlleur {
     private TelephoneService telephoneService;
     @Autowired
     private CategorieService categorieService;
+
+    @GetMapping("/home")
+    public String start() {
+        return "home";
+    }
+
     @GetMapping("/telephone")
     public String ListUser(Model model,
                            @RequestParam(name = "page", defaultValue = "0" ) int page,

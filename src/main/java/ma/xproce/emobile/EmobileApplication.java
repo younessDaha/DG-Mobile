@@ -33,8 +33,10 @@ public class EmobileApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         User user=new User();
         user.setAdress("aaaaa");
+        user.setMdps("12345");
+        user.setRole("user");
         user.setNom("younes");
-        user.setEmail("aaaaaaa");
+//        user.setEmail("aaaaaaa");
         userRepository.save(user);
 
         Categorie categorie = new Categorie();
@@ -46,7 +48,7 @@ public class EmobileApplication implements CommandLineRunner {
 
         Commande commande = new Commande();
         commande.setDate(new Date(2022,11,23));
-        commande.setUser(user);
+//        commande.setUser(user);
         commande.setPrixTotal(22.22);
         commandeRepository.save(commande);
 
@@ -55,7 +57,7 @@ public class EmobileApplication implements CommandLineRunner {
         telephone.setDesc("bon plan");
         telephone.setPrice(2500.00);
         telephone.setCategorie(categorie);
-        telephone.setImageFileName("MasterPiece.png");
+        telephone.setImageFileName("i15.jpg");
         telephone.setMarque("appel");
         telephone.setQuantite(3);
         telephoneRepository.save(telephone);

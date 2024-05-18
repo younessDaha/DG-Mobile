@@ -21,6 +21,8 @@ public class Categorie {
     @OneToMany(mappedBy = "categorie",fetch = FetchType.EAGER)
     private Collection<Product>products=new ArrayList<>();
 
+
+
     @Override
     public String toString() {
         return  nom

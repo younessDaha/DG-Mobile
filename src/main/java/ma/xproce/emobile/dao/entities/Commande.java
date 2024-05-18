@@ -27,4 +27,7 @@ public class Commande {
     //ass avec prod
     @ManyToMany(mappedBy = "commandes",fetch = FetchType.EAGER)
     private Collection<Product>products=new ArrayList<>();
+
+    @ManyToOne
+    private Arrondissement arrondissement;
 }

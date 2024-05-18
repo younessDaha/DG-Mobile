@@ -34,8 +34,8 @@ public abstract class Product {
     @ManyToOne
     private Categorie categorie;
     //ass avec cartItem
-    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
-    private Collection<CartItem>cartItems=new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Cart>carts=new ArrayList<>();
 
 
 }

@@ -17,6 +17,9 @@ public class CategorieControlleur {
     @Autowired
     private CategorieService categorieService;
 
+
+
+
     @GetMapping("/categorie")
     public String getCtegorie(Model model,
                               @RequestParam(name = "page", defaultValue = "0" ) int page,

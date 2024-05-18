@@ -12,21 +12,24 @@ import java.util.Collection;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-public class User {
+public class Arrondissement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nom;
-    private String mdps;
-    private String role;
-    private String adress;
-//    private String email;
 
-    //ass avec cart
-    @OneToOne(mappedBy = "user")
-    private Cart cart;
-    //ass avec commande
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private Collection<Commande>commandes=new ArrayList<>();
+
+    @OneToMany(mappedBy = "arrondissement",fetch = FetchType.EAGER)
+    Collection<Commande>commandes = new ArrayList<>();
+
+    @OneToOne(mappedBy = "arrondissement")
+    private Livreur livreur;
+
+    @Override
+    public String toString() {
+        return  nom
+                ;
+    }
+
+
 }
