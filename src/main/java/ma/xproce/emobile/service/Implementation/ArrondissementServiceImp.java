@@ -51,4 +51,9 @@ public class ArrondissementServiceImp implements ArrondissementService {
     public void deleteById(Integer id) {
         arrondissementRepository.deleteById(id);
     }
+
+    @Override
+    public List<Arrondissement> getAllArrondissement2() {
+        return arrondissementRepository.findAll();
+    }
 }

@@ -19,7 +19,7 @@ public class User {
     private Integer id;
     private String nom;
     private String mdps;
-    private String adress;
+//    private String adress;
     private String email;
 
     @ManyToOne

@@ -26,4 +26,6 @@ public interface ArrondissementService {
     void updateArr(Arrondissement exArr);
 
     void deleteById(Integer id);
+
+    List<Arrondissement> getAllArrondissement2();
 }

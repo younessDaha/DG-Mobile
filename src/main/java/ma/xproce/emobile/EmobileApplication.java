@@ -34,7 +34,7 @@ public class EmobileApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         User user=new User();
-        user.setAdress("aaaaa");
+//        user.setAdress("aaaaa");
         user.setMdps("12345");
 //        user.setRole("user");
         user.setNom("younes");
@@ -87,7 +87,6 @@ public class EmobileApplication implements CommandLineRunner {
 
         user.setRole(roleAdminMan);
         userRepository.save(user);
-
 
 
 

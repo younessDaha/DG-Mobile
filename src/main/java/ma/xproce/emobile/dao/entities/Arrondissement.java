@@ -19,11 +19,14 @@ public class Arrondissement {
     private String nom;
 
 
-    @OneToMany(mappedBy = "arrondissement",fetch = FetchType.EAGER)
-    Collection<Commande>commandes = new ArrayList<>();
+//    @OneToMany(mappedBy = "arrondissement",fetch = FetchType.EAGER)
+//    Collection<Commande>commandes = new ArrayList<>();
 
     @OneToOne(mappedBy = "arrondissement")
     private Livreur livreur;
+
+    @OneToMany(mappedBy = "arrondissement",fetch = FetchType.EAGER)
+    Collection<Adresse>adresses=new ArrayList<>();
 
     @Override
     public String toString() {

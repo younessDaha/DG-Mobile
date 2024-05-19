@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passer une commande</title>
+  <!-- Inclure les fichiers CSS de Bootstrap pour des styles prédéfinis -->
+  <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="mb-0">Passer une commande</h1>
+    </div>
+    <div class="card-body">
+      <!-- Affichage des produits dans le panier -->
+      <h2>Produits dans le panier :</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">Nom du produit</th>
+            <th scope="col">Prix</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="panier : ${listeDesProduitsDansLePanier}">
+            <td th:text="${panier.product.nom}"></td>
+            <td th:text="${panier.product.price}"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Affichage du prix total -->
+      <h2>Total : <span th:text="${prixTotal}"></span></h2>
+
+      <!-- Formulaire pour ajouter l'adresse -->
+      <form method="post" action="/ajouter-adresse">
+        <input type="hidden" name="commandeId" th:value="${commande.id}" />
+        <div class="form-group">
+          <label for="rue">Rue :</label>
+          <input type="text" id="rue" name="rue" class="form-control" required>
+        </div>
+        <!-- Ajoutez ici les champs pour la ville, le code postal et le pays si nécessaire -->
+        <div class="form-group">
+          <label for="codepostal">Code Postal :</label>
+          <input type="text" id="codepostal" name="codepostal" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="arr"><i class="fas fa-info-circle"></i> Arrondissement</label>
+          <select id="arr" name="arr" class="form-control">
+            <option value="">Sélectionnez un arrondissement</option>
+            <!-- Utiliser Thymeleaf pour itérer sur la liste d'arrondissements -->
+            <option th:each="arr : ${cat}" th:value="${arr.id}" th:text="${arr.nom}"></option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Confirmer la commande</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Inclure le script JavaScript de Bootstrap pour les fonctionnalités interactives -->
+<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

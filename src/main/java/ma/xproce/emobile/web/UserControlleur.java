@@ -51,12 +51,12 @@ public class UserControlleur {
     @PostMapping("/user")
     public String saveUser(Model model,
                            @RequestParam("nom") String nom,
-                           @RequestParam("adress") String adress,
+//                           @RequestParam("adress") String adress,
                            @RequestParam("email") String email,
                            @RequestParam("mdps") String mdps
     ) {
         System.out.println("Nom: " + nom);
-        System.out.println("Adresse: " + adress);
+//        System.out.println("Adresse: " + adress);
         System.out.println("Email: " + email);
         System.out.println("mdps: " + mdps);
         // Récupérer le rôle "user" depuis la base de données
@@ -68,7 +68,7 @@ public class UserControlleur {
 
         // Sauvegardez votre nouvel utilisateur
         newUser.setNom(nom);
-        newUser.setAdress(adress);
+//        newUser.setAdress(adress);
         newUser.setEmail(email);
         newUser.setMdps(mdps);
         // Assigner le rôle "user" à l'utilisateur
@@ -93,7 +93,7 @@ public class UserControlleur {
                             @ModelAttribute("User")User user){
         User exUser = userService.getUserById(id);
         exUser.setId(id);
-        exUser.setAdress(user.getAdress());
+//        exUser.setAdress(user.getAdress());
         exUser.setNom(user.getNom());
         exUser.setEmail(user.getEmail());
         userService.updateUser(exUser);

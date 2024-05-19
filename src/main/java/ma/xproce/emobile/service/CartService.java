@@ -13,6 +13,8 @@ public interface CartService {
     Cart ajouteraupanier(Integer produitId);
 
     List<Cart> getProduitsDansLePanier();
+
+    void viderPanier();
 //    Cart ajouterTeleAuPanier(Integer id , Integer userId);
 //
 //    Cart ajouterAccToPanier(Integer id, Integer userId);

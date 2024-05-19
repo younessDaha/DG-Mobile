@@ -42,6 +42,11 @@ public class CartServiceImp implements CartService {
     public List<Cart> getProduitsDansLePanier() {
         return cartRepository.findAll();
     }
+
+    @Override
+    public void viderPanier() {
+        cartRepository.deleteAll();
+    }
 }
 
 
