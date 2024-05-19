@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des commandes</title>
-    <!-- Include Bootstrap CSS -->
+    <title>Panier</title>
+    <!-- Inclure Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -17,10 +17,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/categorie">Categorie</a>
+                <a class="nav-link" href="/categorie">Catégorie</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user">User</a>
+                <a class="nav-link" href="/user">Utilisateur</a>
             </li>
             <li class="nav-item">
                 <div class="dropdown">
@@ -29,8 +29,8 @@
                         Produits
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/telephone">Telephone</a>
-                        <a class="dropdown-item" href="/accessoir">Accessoir</a>
+                        <a class="dropdown-item" href="/telephone">Téléphone</a>
+                        <a class="dropdown-item" href="/accessoir">Accessoire</a>
                     </div>
                 </div>
             </li>
@@ -38,7 +38,7 @@
                 <a class="nav-link" href="/arrlist">Arrondissements</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/rolelist">Roles</a>
+                <a class="nav-link" href="/rolelist">Rôles</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
@@ -49,37 +49,40 @@
 
 <div class="container mt-5">
     <div class="card">
-        <div class="card-header bg-primary text-white">Liste des commandes</div>
+        <div class="card-header bg-primary text-white">Panier</div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Prix Total</th>
-                        <th scope="col">Utilisateur</th>
-                        <th scope="col">Produits</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="commande: ${comm}">
-                        <td th:text="${commande.id}"></td>
-                        <td th:text="${commande.date}"></td>
-                        <td th:text="${commande.prixTotal}"></td>
-                        <td th:text="${commande.user.username}"></td>
-                        <td>
-                            <ul>
-                                <li th:each="product: ${commande.products}" th:text="${product.name} + ' (' + ${product.price} + ') '"></li>
-                            </ul>
-                        </td>
+                    <tr th:each="cartItem : ${listeDesProduitsDansLePanier}">
+                        <td th:text="${cartItem.cid}"></td>
+                        <td th:text="${cartItem.product.nom}"></td>
+                        <td th:text="${cartItem.product.price}"></td>
+                        <td >1</td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
+                <div class="text-right">
+                    <strong>Prix Total: </strong> <span th:text="${prixTotal}">0</span> €
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Inclure Bootstrap JS et les dépendances -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

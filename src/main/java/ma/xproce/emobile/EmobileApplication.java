@@ -24,6 +24,8 @@ public class EmobileApplication implements CommandLineRunner {
     private TelephoneRepository telephoneRepository;
     @Autowired
     private AccesoirRepository accesoirRepository;
+    @Autowired
+    private RoleRepository roleRepository;
     
     public static void main(String[] args) {
         SpringApplication.run(EmobileApplication.class, args);
@@ -34,7 +36,7 @@ public class EmobileApplication implements CommandLineRunner {
         User user=new User();
         user.setAdress("aaaaa");
         user.setMdps("12345");
-        user.setRole("user");
+//        user.setRole("user");
         user.setNom("younes");
 //        user.setEmail("aaaaaaa");
         userRepository.save(user);
@@ -70,6 +72,22 @@ public class EmobileApplication implements CommandLineRunner {
         accesoir.setCategorie(categorie1);
         accesoir.setQuantite(3);
         accesoirRepository.save(accesoir);
+
+        Role roleUser = new Role();
+        roleUser.setNom("user");
+        roleRepository.save(roleUser);
+        Role roleAdmin = new Role();
+        roleAdmin.setNom("admin");
+        roleRepository.save(roleAdmin);
+        Role roleAdminMan = new Role();
+        roleAdminMan.setNom("adminMan");
+        roleRepository.save(roleAdminMan);
+
+
+
+        user.setRole(roleAdminMan);
+        userRepository.save(user);
+
 
 
 

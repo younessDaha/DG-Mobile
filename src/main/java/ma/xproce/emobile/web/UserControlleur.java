@@ -1,6 +1,8 @@
 package ma.xproce.emobile.web;
 
+import ma.xproce.emobile.dao.entities.Role;
 import ma.xproce.emobile.dao.entities.User;
+import ma.xproce.emobile.service.RoleService;
 import ma.xproce.emobile.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +18,8 @@ import java.util.List;
 public class UserControlleur {
     @Autowired
     private UserService userService;
+@Autowired
+    private RoleService roleService;
 
 
 
@@ -47,18 +51,29 @@ public class UserControlleur {
     @PostMapping("/user")
     public String saveUser(Model model,
                            @RequestParam("nom") String nom,
-                           @RequestParam("adress") String adress
-//                           @RequestParam("email") String email
+                           @RequestParam("adress") String adress,
+                           @RequestParam("email") String email,
+                           @RequestParam("mdps") String mdps
     ) {
         System.out.println("Nom: " + nom);
         System.out.println("Adresse: " + adress);
-//        System.out.println("Email: " + email);
+        System.out.println("Email: " + email);
+        System.out.println("mdps: " + mdps);
+        // Récupérer le rôle "user" depuis la base de données
+        Role userRole = roleService.findRoleByNom("user");
+
+
+        User newUser = new User();
+
 
         // Sauvegardez votre nouvel utilisateur
-        User newUser = new User();
         newUser.setNom(nom);
         newUser.setAdress(adress);
-//        newUser.setEmail(email);
+        newUser.setEmail(email);
+        newUser.setMdps(mdps);
+        // Assigner le rôle "user" à l'utilisateur
+
+        newUser.setRole(userRole);
         userService.createUser(newUser);
 
         List<User> users = userService.getAllUser2();
@@ -80,7 +95,7 @@ public class UserControlleur {
         exUser.setId(id);
         exUser.setAdress(user.getAdress());
         exUser.setNom(user.getNom());
-//        exUser.setEmail(user.getEmail());
+        exUser.setEmail(user.getEmail());
         userService.updateUser(exUser);
 
         return "redirect:/user";

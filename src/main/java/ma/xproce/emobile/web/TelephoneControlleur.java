@@ -51,6 +51,8 @@ public class TelephoneControlleur {
         return "telephoneList";
     }
 
+
+
     @GetMapping("/telephone/new")
     public String creatUser(Model model){
         Product telephone=new Telephone();
@@ -105,7 +107,9 @@ public class TelephoneControlleur {
         return "editTelephone";
     }
 
-    @PostMapping("/telephone/{id}")
+
+
+    @PostMapping("/telephone/delete/{id}")
     public String edditTele(Model model,
                             @PathVariable Integer id,
                             @ModelAttribute("Telephones") Telephone telephone){

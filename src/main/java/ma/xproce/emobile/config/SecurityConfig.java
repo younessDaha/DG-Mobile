@@ -27,8 +27,8 @@ public class SecurityConfig {
         http
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/telephone").authenticated()
-                        .requestMatchers("/home", "/webjars/**","/h2-console/**").permitAll())
+                        .requestMatchers("/telephone/**").authenticated()
+                        .requestMatchers("/home", "/webjars/**","/h2-console/**","/","/images/**","/**").permitAll())
                 //.formLogin((form -> form.loginPage("/loginpage").permitAll()))
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())

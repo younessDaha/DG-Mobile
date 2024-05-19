@@ -3,6 +3,7 @@ package ma.xproce.emobile.dao.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,9 +14,11 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Getter
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_produit", discriminatorType = DiscriminatorType.STRING)
 
-public abstract class Product {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
@@ -34,8 +37,10 @@ public abstract class Product {
     @ManyToOne
     private Categorie categorie;
     //ass avec cartItem
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Cart>carts=new ArrayList<>();
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    private Collection<Cart>carts=new ArrayList<>();
+    @OneToMany(mappedBy = "product")
+    private Collection<Cart> carts;
 
 
 }

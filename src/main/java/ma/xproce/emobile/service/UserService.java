@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UserService {
@@ -21,4 +22,6 @@ public interface UserService {
     void deleteById(Integer id);
 
     List<User> getAllUser2();
+
+    Optional<User> getUserByNom(String username);
 }

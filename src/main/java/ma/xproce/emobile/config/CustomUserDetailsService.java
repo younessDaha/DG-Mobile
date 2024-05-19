@@ -2,6 +2,7 @@ package ma.xproce.emobile.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import ma.xproce.emobile.dao.entities.Role;
 import ma.xproce.emobile.dao.entities.User;
 import ma.xproce.emobile.dao.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         log.info("user {}", user);
         String mdps = user.get().getMdps();
         log.info("mdps {}",mdps);
-        String role =user.get().getRole();
+        Role r =user.get().getRole();
+        String role = r.getNom();
         role = ROLE_PREFIX+role;
         log.info("role {}",role);
         List<GrantedAuthority> roles = new ArrayList<>();

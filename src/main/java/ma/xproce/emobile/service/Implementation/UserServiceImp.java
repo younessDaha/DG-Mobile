@@ -5,7 +5,6 @@ import ma.xproce.emobile.dao.repository.UserRepository;
 import ma.xproce.emobile.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -48,6 +47,11 @@ public class UserServiceImp implements UserService  {
     @Override
     public List<User> getAllUser2() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public Optional<User> getUserByNom(String username) {
+        return userRepository.findByNom(username);
     }
 
 }
