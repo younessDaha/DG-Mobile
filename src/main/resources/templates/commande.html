@@ -56,7 +56,7 @@
 
             <!-- Formulaire pour ajouter l'adresse -->
             <form method="post" action="/ajouter-adresse">
-                <input type="hidden" name="commandeId" th:value="${commandeId}" />
+                <input type="hidden" name="id" th:value="${commandeId}" />
                 <div class="form-group">
                     <label for="rue">Rue :</label>
                     <input type="text" id="rue" name="rue" class="form-control" required>

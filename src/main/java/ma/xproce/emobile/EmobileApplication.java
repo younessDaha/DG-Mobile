@@ -2,14 +2,12 @@ package ma.xproce.emobile;
 
 import ma.xproce.emobile.dao.entities.*;
 import ma.xproce.emobile.dao.repository.*;
-import ma.xproce.emobile.service.Implementation.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication
 public class EmobileApplication implements CommandLineRunner {
@@ -59,7 +57,7 @@ public class EmobileApplication implements CommandLineRunner {
         telephone.setDesc("bon plan");
         telephone.setPrice(2500.00);
         telephone.setCategorie(categorie);
-        telephone.setImageFileName("i15.jpg");
+        telephone.setImageFileName("static/i15.jpg");
         telephone.setMarque("appel");
         telephone.setQuantite(3);
         telephoneRepository.save(telephone);

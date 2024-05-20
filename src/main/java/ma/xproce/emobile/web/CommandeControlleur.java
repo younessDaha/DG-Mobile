@@ -1,6 +1,7 @@
 package ma.xproce.emobile.web;
 
 import ma.xproce.emobile.dao.entities.*;
+import ma.xproce.emobile.dao.repository.CommandeRepository;
 import ma.xproce.emobile.service.AdresseService;
 import ma.xproce.emobile.service.ArrondissementService;
 import ma.xproce.emobile.service.CartService;
@@ -25,6 +26,8 @@ public class CommandeControlleur {
     private AdresseService adresseService;
     @Autowired
     private ArrondissementService arrondissementService;
+    @Autowired
+    private CommandeRepository commandeRepository;
 
 
         @GetMapping("/comm")
@@ -66,6 +69,10 @@ public class CommandeControlleur {
                 .mapToDouble(cart -> cart.getProduct().getPrice())
                 .sum();
         Commande commande = new Commande();
+       commande.setId(1);
+       commandeRepository.save(commande);
+        List<Arrondissement> arrondissementList = arrondissementService.getAllArrondissement2();
+        model.addAttribute("arrondissements", arrondissementList);
         model.addAttribute("listeDesProduitsDansLePanier", listeDesProduitsDansLePanier);
         model.addAttribute("prixTotal", prixTotal);
         model.addAttribute("commande", commande);
@@ -74,15 +81,13 @@ public class CommandeControlleur {
     }
 
 
-
-
     @PostMapping("/ajouter-adresse")
     public String ajouterAdresse(Model model,
                                  @RequestParam(name = "rue") String rue,
 //                                 @RequestParam(name = "ville") String ville,
                                  @RequestParam(name = "codepostal") String codepostal,
 //                                 @RequestParam(name = "pays") String pays,
-                                 @RequestParam(name = "commandeId") Integer commandeId) {
+                                 @RequestParam(name = "id") Integer commandeId) {
         // Créer une nouvelle adresse
         Adresse adresse = new Adresse();
         adresse.setRue(rue);
@@ -92,15 +97,18 @@ public class CommandeControlleur {
 
         // Récupérer la commande associée
         Commande commande = new Commande();
-        commande = commandeService.getCommandeById(commandeId);
+        commandeService.creerCommande(commande);
+        commande = commandeService.getCommandeById(1);
 
         // Lier l'adresse à la commande
         commande.setAdresse(adresse);
 
         // Enregistrer l'adresse
         adresseService.addAdresse(adresse);
-        List<Arrondissement>arrondissements=arrondissementService.getAllArrondissement2();
-        model.addAttribute("arrondissements",arrondissements);
+
+        List<Arrondissement> arrondissementList = arrondissementService.getAllArrondissement2();
+        model.addAttribute("arrondissements", arrondissementList);
+
 
         // Passer la commande mise à jour à la vue de confirmation
         model.addAttribute("commande", commande);
