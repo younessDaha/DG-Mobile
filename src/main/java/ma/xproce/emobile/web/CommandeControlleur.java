@@ -30,7 +30,7 @@ public class CommandeControlleur {
     private CommandeRepository commandeRepository;
 
 
-        @GetMapping("/comm")
+    @GetMapping("/comm")
     public String ListComm(Model model,
                            @RequestParam(name = "page", defaultValue = "0" ) int page,
                            @RequestParam(name = "taille", defaultValue = "6" ) int taille,
@@ -69,8 +69,8 @@ public class CommandeControlleur {
                 .mapToDouble(cart -> cart.getProduct().getPrice())
                 .sum();
         Commande commande = new Commande();
-       commande.setId(1);
-       commandeRepository.save(commande);
+        commande.setId(1);
+        commandeRepository.save(commande);
         List<Arrondissement> arrondissementList = arrondissementService.getAllArrondissement2();
         model.addAttribute("arrondissements", arrondissementList);
         model.addAttribute("listeDesProduitsDansLePanier", listeDesProduitsDansLePanier);
@@ -85,9 +85,10 @@ public class CommandeControlleur {
     public String ajouterAdresse(Model model,
                                  @RequestParam(name = "rue") String rue,
 //                                 @RequestParam(name = "ville") String ville,
-                                 @RequestParam(name = "codepostal") String codepostal,
+                                 @RequestParam(name = "codepostal") String codepostal
 //                                 @RequestParam(name = "pays") String pays,
-                                 @RequestParam(name = "id") Integer commandeId) {
+                                 //@RequestParam(name = "id") Integer
+                                 ) {
         // Créer une nouvelle adresse
         Adresse adresse = new Adresse();
         adresse.setRue(rue);
@@ -135,6 +136,7 @@ public class CommandeControlleur {
     @GetMapping("/confirmation")
     public String afficherConfirmation(@RequestParam("commandeId") Integer commandeId, Model model) {
         Commande commande = commandeService.getCommandeById(commandeId);
+        Optional<Arrondissement> arrondissement = arrondissementService.getArrByIdadr(commande.getAdresse().getId());
         model.addAttribute("commande", commande);
 
         cartService.viderPanier();
@@ -173,4 +175,3 @@ public class CommandeControlleur {
 //        model.addAttribute("comm",commande);
 //        return "commList";
 //    }
-

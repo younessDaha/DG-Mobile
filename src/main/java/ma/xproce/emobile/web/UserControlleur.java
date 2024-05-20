@@ -78,7 +78,7 @@ public class UserControlleur {
 
         List<User> users = userService.getAllUser2();
         model.addAttribute("user", users);
-        return "redirect:/user";
+        return "redirect:/login";
     }
 
     @GetMapping("/user/edit/{id}")

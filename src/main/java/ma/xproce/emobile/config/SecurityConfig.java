@@ -30,11 +30,9 @@ public class SecurityConfig {
                         .requestMatchers("/telephone/**").authenticated()
                         .requestMatchers("/home", "/webjars/**","/h2-console/**","/","/images/**","/**").permitAll())
                 //.formLogin((form -> form.loginPage("/loginpage").permitAll()))
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults())
-                .cors(AbstractHttpConfigurer::disable)
-                .csrf(AbstractHttpConfigurer::disable)
-                .headers(AbstractHttpConfigurer::disable);
+                .formLogin(form -> form
+                        .defaultSuccessUrl("/telephone", true)) // Redirige vers /listeReclamations après une connexion réussie
+                .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

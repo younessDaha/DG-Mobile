@@ -3,68 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Passer une commande</title>
-  <!-- Inclure les fichiers CSS de Bootstrap pour des styles prédéfinis -->
-  <link rel="stylesheet" href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css">
+  <title>Confirmation de Commande</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .card-header {
+      background: #007bff;
+      color: #ffffff;
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      border-radius: 5px 5px 0 0;
+    }
+    .card-header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    .table-responsive {
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #e0e0e0;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
 
 <div class="container">
   <div class="card">
     <div class="card-header">
-      <h1 class="mb-0">Passer une commande</h1>
+      <h1 class="mb-0">Confirmation</h1>
     </div>
     <div class="card-body">
-      <!-- Affichage des produits dans le panier -->
-      <h2>Produits dans le panier :</h2>
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th scope="col">Nom du produit</th>
-            <th scope="col">Prix</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr th:each="panier : ${listeDesProduitsDansLePanier}">
-            <td th:text="${panier.product.nom}"></td>
-            <td th:text="${panier.product.price}"></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- Affichage du prix total -->
-      <h2>Total : <span th:text="${prixTotal}"></span></h2>
 
-      <!-- Formulaire pour ajouter l'adresse -->
-      <form method="post" action="/ajouter-adresse">
-        <input type="hidden" name="commandeId" th:value="${commande.id}" />
-        <div class="form-group">
-          <label for="rue">Rue :</label>
-          <input type="text" id="rue" name="rue" class="form-control" required>
-        </div>
-        <!-- Ajoutez ici les champs pour la ville, le code postal et le pays si nécessaire -->
-        <div class="form-group">
-          <label for="codepostal">Code Postal :</label>
-          <input type="text" id="codepostal" name="codepostal" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="arr"><i class="fas fa-info-circle"></i> Arrondissement</label>
-          <select id="arr" name="arr" class="form-control">
-            <option value="">Sélectionnez un arrondissement</option>
-            <!-- Utiliser Thymeleaf pour itérer sur la liste d'arrondissements -->
-            <option th:each="arr : ${cat}" th:value="${arr.id}" th:text="${arr.nom}"></option>
-          </select>
-        </div>
 
-        <button type="submit" class="btn btn-primary">Confirmer la commande</button>
-      </form>
+      <h3>Adresse de livraison :</h3>
+      <p>
+        <span th:text="${commande.adresse.rue}"></span>,
+        <span th:text="${commande.adresse.codePostal}"></span>,
+        <span th:text="${commande.adresse.arrondissement}"></span>
+      </p>
+
+      <h3>Mervi Pour Votre Confiance</h3>
+      <a href="/telephone" class="btn-primary">Vers le Site</a>
+      <a href="/home" class="btn-primary">Vers l'acceuil</a>
+      <a href="/logout" class="btn-primary">Finir Session</a>
+
+
+
     </div>
   </div>
 </div>
-
-<!-- Inclure le script JavaScript de Bootstrap pour les fonctionnalités interactives -->
-<script src="/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

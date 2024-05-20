@@ -109,7 +109,7 @@ public class TelephoneControlleur {
 
 
 
-    @PostMapping("/telephone/delete/{id}")
+    @PostMapping("/telephone/{id}")
     public String edditTele(Model model,
                             @PathVariable Integer id,
                             @ModelAttribute("Telephones") Telephone telephone){

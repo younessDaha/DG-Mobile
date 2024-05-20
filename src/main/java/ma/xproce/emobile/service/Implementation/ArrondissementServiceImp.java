@@ -56,4 +56,9 @@ public class ArrondissementServiceImp implements ArrondissementService {
     public List<Arrondissement> getAllArrondissement2() {
         return arrondissementRepository.findAll();
     }
+
+    @Override
+    public Optional<Arrondissement> getArrByIdadr(Integer id) {
+        return arrondissementRepository.findById(id);
+    }
 }

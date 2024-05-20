@@ -2,7 +2,6 @@ package ma.xproce.emobile.service;
 
 
 import ma.xproce.emobile.dao.entities.Arrondissement;
-import ma.xproce.emobile.service.dto.ArrondissementDTOADD;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -28,4 +27,6 @@ public interface ArrondissementService {
     void deleteById(Integer id);
 
     List<Arrondissement> getAllArrondissement2();
+
+    Optional<Arrondissement> getArrByIdadr(Integer id);
 }

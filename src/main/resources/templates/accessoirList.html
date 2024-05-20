@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des accessoires</title>
@@ -144,19 +144,21 @@
 </head>
 <body>
 <nav class="navbar">
-    <a class="navbar-brand" href="#">DG e-mobile</a>
-    <a class="nav-link" href="/categorie">Catégorie</a>
-    <a class="nav-link" href="/user">User</a>
+    <a class="navbar-brand" href="/home">DG e-mobile</a>
+    <a class="nav-link" href="#">Adresse</a>
+
     <div class="dropdown">
         <a class="nav-link dropdown-toggle" href="#">Produits</a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="/telephone">Téléphone</a>
             <a class="dropdown-item" href="/accessoir">Accessoire</a>
         </div>
-    </div>
-    <a class="nav-link" href="/arrlist">Arrondissements</a>
-    <a class="nav-link" href="/rolelist">Rôles</a>
-    <a class="nav-link" href="#">Contact</a>
+        <a sec:authorize="hasRole('user')" class="nav-link dropdown-toggle" href="/cart">Panier</a>
+    </div >
+    <a sec:authorize="hasRole('admin')" class="nav-link" href="/arrlist">Arrondissements</a>
+    <a sec:authorize="hasRole('admin')" class="nav-link" href="/rolelist">Rôles</a>
+    <a sec:authorize="hasRole('admin')" class="nav-link" href="/categorie">Catégorie</a>
+    <a sec:authorize="hasRole('admin')" class="nav-link" href="/user">User</a>
 </nav>
 
 <div class="container">
@@ -165,7 +167,7 @@
         <div class="card-body">
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <a th:href="@{/accessoir/new}" class="btn btn-primary btn-sm">
+                    <a th:href="@{/accessoir/new}" class="btn btn-primary btn-sm btn-dark" >
                         <i class="fas fa-plus-circle"></i> Ajouter un accessoire
                     </a>
                 </div>
@@ -181,20 +183,20 @@
             <div class="row" th:each="t : ${acc}">
                 <div class="col-md-6">
                     <div class="card product-card">
-                        <img th:src="@{|images/${t.imageFileName}|}" alt="Image de ${t.nom}">
+                        <img th:src="@{${t.imageFileName}}" alt="Image de ${t.nom}">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${t.nom}">Nom de l'accessoire</h5>
                             <p class="card-text" th:text="${t.desc}">Description de l'accessoire</p>
                             <p class="card-text"><strong>Type :</strong> <span th:text="${t.type}">Type de l'accessoire</span></p>
                             <p class="card-text"><strong>Prix :</strong> <span th:text="${t.price}">Prix de l'accessoire</span> DH</p>
                             <div class="btn-group" role="group">
-                                <a th:href="@{/accessoir/edit/{id}(id=${t.id})}" class="btn btn-dark">
+                                <a sec:authorize="hasRole('admin')" th:href="@{/accessoir/edit/{id}(id=${t.id})}" class="btn btn-dark">
                                     <i class="fas fa-pencil-alt"></i> Modifier
                                 </a>
-                                <a th:href="@{/accessoir/{id}(id=${t.id})}" class="btn btn-dark">
+                                <a sec:authorize="hasRole('admin')" th:href="@{/accessoir/{id}(id=${t.id})}" class="btn btn-dark">
                                     <i class="fas fa-trash"></i> Supprimer
                                 </a>
-                                <a th:href="@{/cart/{id}(id=${t.id})}" class="btn btn-dark">
+                                <a sec:authorize="hasRole('user')" th:href="@{/cart/{id}(id=${t.id})}" class="btn btn-dark">
                                     <i class="fas fa-cart-plus"></i> Ajouter au panier
                                 </a>
                             </div>
