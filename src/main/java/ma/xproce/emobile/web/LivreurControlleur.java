@@ -1,7 +1,9 @@
 package ma.xproce.emobile.web;
 
+import ma.xproce.emobile.dao.entities.Arrondissement;
 import ma.xproce.emobile.dao.entities.Categorie;
 import ma.xproce.emobile.dao.entities.Livreur;
+import ma.xproce.emobile.service.ArrondissementService;
 import ma.xproce.emobile.service.CategorieService;
 import ma.xproce.emobile.service.LivreurService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class LivreurControlleur {
     @Autowired
     private LivreurService livreurService;
+    @Autowired
+    private ArrondissementService arrondissementService;
 
 
 
@@ -39,6 +43,8 @@ public class LivreurControlleur {
     @GetMapping("/livreur/new")
     public String addCategorie (Model model){
         Livreur livreur = new Livreur();
+        List<Arrondissement> arrondissementList = arrondissementService.getAllArrondissement2();
+        model.addAttribute("arrondissements", arrondissementList);
         model.addAttribute("cat",livreur);
         return "addlivreur";
     }
@@ -46,10 +52,12 @@ public class LivreurControlleur {
     @PostMapping("livreur")
     public  String saveCategorie(Model model,
                                  @RequestParam("nom")String nom,
+                                 @RequestParam("arrondissements")Arrondissement arrondissements,
                                  @RequestParam("num") String num){
         Livreur livreur = new Livreur();
         livreur.setNom(nom);
         livreur.setNum(num);
+        livreur.setArrondissement(arrondissements);
         livreurService.createCategorie(livreur);
         List<Livreur> livreurs = livreurService.getAllCategorie2();
         model.addAttribute("cat",livreurs);

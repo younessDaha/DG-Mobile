@@ -18,6 +18,9 @@ public class Arrondissement {
     private Integer id;
     private String nom;
 
+    public Arrondissement(String nom) {
+        this.nom = nom;
+    }
 
 //    @OneToMany(mappedBy = "arrondissement",fetch = FetchType.EAGER)
 //    Collection<Commande>commandes = new ArrayList<>();

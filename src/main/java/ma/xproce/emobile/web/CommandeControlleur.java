@@ -84,8 +84,10 @@ public class CommandeControlleur {
     @PostMapping("/ajouter-adresse")
     public String ajouterAdresse(Model model,
                                  @RequestParam(name = "rue") String rue,
+                                 @RequestParam(name = "arrondissements") Arrondissement arrondissements,
 //                                 @RequestParam(name = "ville") String ville,
                                  @RequestParam(name = "codepostal") String codepostal
+
 //                                 @RequestParam(name = "pays") String pays,
                                  //@RequestParam(name = "id") Integer
                                  ) {
@@ -94,6 +96,7 @@ public class CommandeControlleur {
         adresse.setRue(rue);
 //        adresse.setVille(ville);
         adresse.setCodePostal(codepostal);
+        adresse.setArrondissement(arrondissements);
 //        adresse.setPays(pays);
 
         // Récupérer la commande associée

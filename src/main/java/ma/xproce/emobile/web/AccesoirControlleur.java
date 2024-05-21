@@ -25,7 +25,7 @@ public class AccesoirControlleur {
     @GetMapping("/accessoir")
     public String ListUser(Model model,
                            @RequestParam(name = "page", defaultValue = "0" ) int page,
-                           @RequestParam(name = "taille", defaultValue = "6" ) int taille,
+                           @RequestParam(name = "taille", defaultValue = "3" ) int taille,
                            @RequestParam(name = "search", defaultValue = "") String keyword) {
         Pageable pageable = PageRequest.of(page, taille);
         Page<Accesoir> accesoirs = accesoirService.getAllAcc(keyword,pageable);
