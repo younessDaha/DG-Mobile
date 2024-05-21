@@ -27,9 +27,17 @@ public class SecurityConfig {
         http
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/telephone/**").authenticated()
-                        .requestMatchers("/home", "/webjars/**","/h2-console/**","/","/images/**","/**").permitAll())
-                //.formLogin((form -> form.loginPage("/loginpage").permitAll()))
+                        .requestMatchers("/telephone/**","/","/images/**","/accessoir","/accessoir/**","/arrlist","/arr","/arr/**"
+                                ,"/livreur","/livreur/**",
+                                "/cart","/cart/**",
+                                "/categorie","/categorie/**",
+                                "/comm","/comm/**","/afficher-commande","/ajouter-adresse","/passer-commande","/confirmation",
+                                "/rolelist",
+                                "/telephone","/telephone/**",
+                                "/user","/user/**"
+                        ).authenticated()
+                        .requestMatchers("/home", "/webjars/**","/h2-console/**").permitAll())
+//                .formLogin((form -> form.loginPage("/loginpage").permitAll()))
                 .formLogin(form -> form
                         .defaultSuccessUrl("/telephone", true)) // Redirige vers /listeReclamations après une connexion réussie
                 .httpBasic(Customizer.withDefaults());

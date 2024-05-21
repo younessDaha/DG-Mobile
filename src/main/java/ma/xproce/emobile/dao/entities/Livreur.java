@@ -21,7 +21,6 @@ public class Livreur {
 
     @Override
     public String toString() {
-        return  nom
-                ;
+        return  nom;
     }
 }
