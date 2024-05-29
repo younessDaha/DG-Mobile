@@ -67,14 +67,14 @@ public class TelephoneControlleur {
                            @RequestParam("marque") String marque,
                            @RequestParam("imageFileName") String imageFileName,
                            @RequestParam("prix") double prix,
-                           @RequestParam("desc") String desc,
+                           @RequestParam("description") String description,
                            @RequestParam("categorie") Categorie categorie,
                            @RequestParam("quantite") int quantite) {
         System.out.println("Nom: " + nom);
         System.out.println("marque: " + marque);
         System.out.println("prix: " + prix);
         System.out.println("imageFileName: " + imageFileName);
-        System.out.println("desc: " + desc);
+        System.out.println("description: " + description);
         System.out.println("Categorie: " + categorie);
         System.out.println("quantite: " + quantite);
 
@@ -86,7 +86,7 @@ public class TelephoneControlleur {
         newtele.setMarque(marque);
         newtele.setImageFileName(imageFileName);
         newtele.setPrice(prix);
-        newtele.setDesc(desc);
+        newtele.setDescription(description);
         newtele.setCategorie(categorie);
         newtele.setQuantite(quantite);
         telephoneService.createTele(newtele);
@@ -118,7 +118,7 @@ public class TelephoneControlleur {
         exTele.setQuantite(telephone.getQuantite());
         exTele.setCategorie(telephone.getCategorie());
         exTele.setMarque(telephone.getMarque());
-        exTele.setDesc(telephone.getDesc());
+        exTele.setDescription(telephone.getDescription());
         exTele.setPrice(telephone.getPrice());
         telephoneService.updateUser(exTele);
 

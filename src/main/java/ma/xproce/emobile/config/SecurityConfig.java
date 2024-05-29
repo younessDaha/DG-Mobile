@@ -33,10 +33,10 @@ public class SecurityConfig {
                                 "/categorie","/categorie/**",
                                 "/comm","/comm/**","/afficher-commande","/ajouter-adresse","/passer-commande","/confirmation",
                                 "/rolelist",
-                                "/telephone","/telephone/**",
-                                "/user","/user/**"
+                                "/telephone","/telephone/**"
                         ).authenticated()
-                        .requestMatchers("/home", "/webjars/**","/h2-console/**").permitAll())
+                        .requestMatchers("/home","/user/new" ,"/webjars/**","/h2-console/**","/user",
+                                "/user/**","/**").permitAll())
 //                .formLogin((form -> form.loginPage("/loginpage").permitAll()))
                 .formLogin(form -> form
                         .defaultSuccessUrl("/telephone", true)) // Redirige vers /listeReclamations après une connexion réussie

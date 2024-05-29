@@ -23,7 +23,7 @@ public class Adresse {
 
     @ManyToOne
     private User user;
-    @OneToMany(mappedBy = "adresse",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "adresse",fetch = FetchType.LAZY)
     Collection<Commande> commandes = new ArrayList<>();
     @ManyToOne
     private Arrondissement arrondissement;

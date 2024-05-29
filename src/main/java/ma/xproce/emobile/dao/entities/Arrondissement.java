@@ -28,7 +28,7 @@ public class Arrondissement {
     @OneToOne(mappedBy = "arrondissement")
     private Livreur livreur;
 
-    @OneToMany(mappedBy = "arrondissement",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "arrondissement",fetch = FetchType.LAZY)
     Collection<Adresse>adresses=new ArrayList<>();
 
     @Override

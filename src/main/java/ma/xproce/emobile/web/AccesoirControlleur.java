@@ -54,14 +54,14 @@ public class AccesoirControlleur {
                            @RequestParam("type") String type,
                            @RequestParam("prix") double prix,
                            @RequestParam("imageFileName") String imageFileName,
-                           @RequestParam("desc") String desc,
+                           @RequestParam("description") String description,
                            @RequestParam("categorie") Categorie categorie,
                            @RequestParam("quantite") int quantite) {
         System.out.println("Nom: " + nom);
         System.out.println("type: " + type);
         System.out.println("prix: " + prix);
         System.out.println("imageFileName: " + imageFileName);
-        System.out.println("desc: " + desc);
+        System.out.println("description: " + description);
         System.out.println("Categorie: " + categorie);
         System.out.println("quantite: " + quantite);
 
@@ -73,7 +73,7 @@ public class AccesoirControlleur {
         newAcc.setNom(nom);
         newAcc.setType(type);
         newAcc.setPrice(prix);
-        newAcc.setDesc(desc);
+        newAcc.setDescription(description);
         newAcc.setImageFileName(imageFileName);
         newAcc.setCategorie(categorie);
         newAcc.setQuantite(quantite);
@@ -102,7 +102,7 @@ public class AccesoirControlleur {
         exAcc.setQuantite(accesoir.getQuantite());
         exAcc.setCategorie(accesoir.getCategorie());
         exAcc.setType(accesoir.getType());
-        exAcc.setDesc(accesoir.getDesc());
+        exAcc.setDescription(accesoir.getDescription());
         exAcc.setPrice(accesoir.getPrice());
         accesoirService.update(exAcc);
 

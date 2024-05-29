@@ -19,6 +19,6 @@ import java.util.Collection;
 public class Telephone extends Product {
     private String marque;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Cart> carts=new ArrayList<>();
 }

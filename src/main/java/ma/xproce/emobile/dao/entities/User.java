@@ -29,7 +29,7 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Cart cart;
     //ass avec commande
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     private Collection<Commande>commandes=new ArrayList<>();
 
     @Override

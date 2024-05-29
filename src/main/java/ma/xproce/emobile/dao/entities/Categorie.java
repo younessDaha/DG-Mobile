@@ -18,7 +18,7 @@ public class Categorie {
     private Integer id;
     private String nom;
     //ass avec prod
-    @OneToMany(mappedBy = "categorie",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "categorie",fetch = FetchType.LAZY)
     private Collection<Product>products=new ArrayList<>();
 
 

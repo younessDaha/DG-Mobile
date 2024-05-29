@@ -19,7 +19,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nom;
-    @OneToMany(mappedBy = "role",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
     private Collection<User> users = new ArrayList<>();
 
     @Override

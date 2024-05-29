@@ -26,7 +26,7 @@ public class Commande {
     @ManyToOne
     private User user;
     //ass avec prod
-    @ManyToMany(mappedBy = "commandes",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "commandes",fetch = FetchType.LAZY)
     private Collection<Product>products=new ArrayList<>();
 
     @ManyToOne

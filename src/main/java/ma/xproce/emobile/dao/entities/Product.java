@@ -16,14 +16,14 @@ import java.util.Collection;
 @Data
 @Getter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type_produit", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "typeproduit", discriminatorType = DiscriminatorType.STRING)
 
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Integer id;
     private String nom;
-    private String desc;
+    private String description;
     private double price;
     private Integer quantite;
     @Lob
@@ -31,7 +31,7 @@ public class Product {
 
 
     //ass avec comm
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Commande>commandes=new ArrayList<>();
     //ass avec cat
     @ManyToOne
